@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using TreatsTracker.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace TreatsTracker.Controllers
 {
@@ -23,11 +27,13 @@ namespace TreatsTracker.Controllers
       return View(model);
     }
 
+    [Authorize(Roles = "Admin")]
     public ActionResult Create()
     {
       return View();
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult Create(Flavor flavor)
     {
@@ -52,12 +58,14 @@ namespace TreatsTracker.Controllers
       return View(thisFlavor);
     }
 
+    [Authorize(Roles = "Admin")]
     public ActionResult Edit(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
     {
@@ -66,12 +74,13 @@ namespace TreatsTracker.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize(Roles = "Admin")]
     public ActionResult Delete(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
-
+    [Authorize(Roles = "Admin")]
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
@@ -81,6 +90,7 @@ namespace TreatsTracker.Controllers
       return RedirectToAction("Index");
     }
 
+    [Authorize(Roles = "Admin")]
     public ActionResult AddTreat(int id)
     {
       Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
@@ -89,6 +99,7 @@ namespace TreatsTracker.Controllers
       return View(thisFlavor);
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult AddTreat(Flavor flavor, int treatId)
     {
@@ -103,13 +114,14 @@ namespace TreatsTracker.Controllers
       return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpPost]
     public ActionResult DeleteJoin(int joinId, int flavorId)
     {
       FlavorTreat joinEntry = _db.FlavorTreats.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreats.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = treatId });
+      return RedirectToAction("Details", new { id = flavorId });
     }
 
   }
