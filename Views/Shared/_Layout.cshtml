@@ -30,12 +30,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/Flavors">Flavors</a>
                         </li>
-                        @if (User.IsInRole("User"))
+                        @* @if (User.IsInRole("User"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="/Orders">Orders</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                        <a class="nav-link text-dark" href="/Orders">Orders</a>
+                        </li>
+                        } *@
                     </ul>
                     <ul class="navbar-nav me-auto">
                         @if (User.Identity.IsAuthenticated)
