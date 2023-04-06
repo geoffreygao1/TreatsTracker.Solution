@@ -18,8 +18,8 @@ _This application contains a website that allows a user to track treats and flav
 ## Setup/Installation Requirements
 
 * _Clone this repository_
-* _Open your shell (e.g., Terminal or GitBash) and navigate into the "Factory" production directory_
-  - _Within the production directory "Factory", create a new file called `appSettings.json`. Within this file, put in the following code, replacing the `uid` and `pwd` values with your own username and password for MySQL_
+* _Open your shell (e.g., Terminal or GitBash) and navigate into the "TreatsTraker.Solution" production directory_
+  - _Within the production directory "TreatsTracker,Solution", create a new file called `appSettings.json`. Within this file, put in the following code, replacing the `uid` and `pwd` values with your own username and password for MySQL_
 ```JSON
 {
   "ConnectionStrings": {
@@ -27,7 +27,7 @@ _This application contains a website that allows a user to track treats and flav
   }
 }
 ```
-* _Create the database using the migrations in the Factory project. Open your shell (e.g., Terminal or GitBash) to the production directory "Factory", and run `dotnet ef database update`._ 
+* _Create the database using the migrations in the Treats Tracker project. Open your shell (e.g., Terminal or GitBash) to the production directory "TreatsTracker.Solution", and run `dotnet ef database update`._ 
 * _In the terminal, run the program with `dotnet watch run` to start the project in development mode with a watcher_
 * _If the application does not automatically launch, open the browser to [https://localhost:5001](https://localhost:5001)_
 
