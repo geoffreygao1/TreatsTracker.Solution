@@ -1,21 +1,21 @@
-@model TreatsTracker.Models.Treat
+@model TreatsTracker.Models.Flavor
 
 <h2>Add a Flavor</h2>
 
 @if (ViewBag.FlavorCount == 0)
 {
-  <h4>You have not added any flavors yet! Please add them <span>@Html.ActionLink("here", "Index", "Flavors")</span>
+  <h4>You have not added any treats yet! Please add them <span>@Html.ActionLink("here", "Index", "Treats")</span>
 </h4>
 }
 else
 {
-  <h4>Assign a flavor to this treat: @Html.DisplayFor(model => model.Name)</h4>
+  <h4>Assign a treat to this flavor: @Html.DisplayFor(model => model.Name)</h4>
   @using (Html.BeginForm())
   {
-    @Html.HiddenFor(model => model.TreatId)
+    @Html.HiddenFor(model => model.FlavorId)
 
     @Html.Label("Select flavor")
-    @Html.DropDownList("FlavorId")
+    @Html.DropDownList("TreatId")
 
     <input type="submit" value="Save" />
   }

@@ -16,3 +16,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+table {
+  width: auto;
+  text-align: center;
+}
+
+th,
+td {
+  border: 1px solid darkgray;
+  padding: 5px;
+}

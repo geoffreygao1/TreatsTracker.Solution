@@ -22,7 +22,7 @@ else
           @Html.ActionLink($"{join.Flavor.Name}", "Details", "Flavors", new { id = join.Flavor.FlavorId })
         </td>
         <td>
-          @using (Html.BeginForm("DeleteJoin", "Flavors"))
+          @using (Html.BeginForm("DeleteJoin", "Treats"))
           {
             @Html.Hidden("joinId", @join.FlavorTreatId)
             @Html.Hidden("treatId", Model.TreatId)
@@ -35,7 +35,7 @@ else
 
 }
 <hr>
-@Html.ActionLink("Add an Flavor", "AddFlavor", new { id = Model.TreatId }, new {@class = "btn btn-success"})
+@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId }, new {@class = "btn btn-success"})
 @Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId}, new {@class = "btn btn-warning"})
 @Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId }, new {@class = "btn btn-danger"})
 <a href="/Flavors"><button type="button" class="btn btn-primary">Back to List</button></a>

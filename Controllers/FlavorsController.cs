@@ -109,7 +109,7 @@ namespace TreatsTracker.Controllers
       FlavorTreat joinEntry = _db.FlavorTreats.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
       _db.FlavorTreats.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Details", new { id = flavorId });
+      return RedirectToAction("Details", new { id = treatId });
     }
 
   }
