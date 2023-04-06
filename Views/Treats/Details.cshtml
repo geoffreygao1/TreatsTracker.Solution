@@ -13,30 +13,39 @@ else
   <table>
   <tr>
     <th>Flavor</th>
-    <th>Actions</th>
-  </tr>
-  @foreach (FlavorTreat join in Model.FlavorTreatJoinEntities)
+    @if (User.IsInRole("Admin"))
+      {
+        <th>Actions</th>
+      }
+    </tr>
+    @foreach (FlavorTreat join in Model.FlavorTreatJoinEntities)
     {
       <tr>
         <td>
           @Html.ActionLink($"{join.Flavor.Name}", "Details", "Flavors", new { id = join.Flavor.FlavorId })
         </td>
-        <td>
-          @using (Html.BeginForm("DeleteJoin", "Treats"))
-          {
-            @Html.Hidden("joinId", @join.FlavorTreatId)
-            @Html.Hidden("treatId", Model.TreatId)
-            <input type="submit" value="Delete" class="btn btn-danger" />
-          }
-        </td>
+        @if (User.IsInRole("Admin"))
+        {
+          <td>
+            @using (Html.BeginForm("DeleteJoin", "Treats"))
+            {
+              @Html.Hidden("joinId", @join.FlavorTreatId)
+              @Html.Hidden("treatId", Model.TreatId)
+              <input type="submit" value="Delete" class="btn btn-danger" />
+            }
+          </td>
+        }
       </tr>
     }
   </table>
 
 }
 <hr>
-@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId }, new {@class = "btn btn-success"})
-@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId}, new {@class = "btn btn-warning"})
-@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId }, new {@class = "btn btn-danger"})
+@if (User.IsInRole("Admin"))
+{
+  @Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId }, new {@class = "btn btn-success"})
+  @Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId}, new {@class = "btn btn-warning"})
+  @Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId }, new {@class = "btn btn-danger"})
+}
 <a href="/Flavors"><button type="button" class="btn btn-primary">Back to List</button></a>
 

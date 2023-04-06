@@ -14,7 +14,10 @@
       <table>
         <tr>
           <th>Treat</th>
-          <th>Actions</th>
+          @if (User.IsInRole("Admin"))
+          {
+            <th>Actions</th>
+          }
         </tr>
         @foreach (Treat treat in Model)
         {
@@ -22,10 +25,13 @@
             <td>
               @Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })
             </td>
-            <td>
-              @Html.ActionLink("Edit", "Edit", new { id = treat.TreatId }, new {@class = "btn btn-warning"})
-              @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId }, new {@class = "btn btn-danger"})
-            </td>
+            @if (User.IsInRole("Admin"))
+            {
+              <td>
+                @Html.ActionLink("Edit", "Edit", new { id = treat.TreatId }, new {@class = "btn btn-warning"})
+                @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId }, new {@class = "btn btn-danger"})
+              </td>
+            }
           </tr>
         }
       </table>
@@ -34,6 +40,9 @@
     <br>
   </div>
   <br>
-  <a href="Treats/Create"><button type="button" class="btn btn-primary btn-sm">Add New Treat</button></a>
+  @if (User.IsInRole("Admin"))
+  {
+    <a href="Treats/Create"><button type="button" class="btn btn-primary btn-sm">Add New Treat</button></a>
+  }
   <a href="/"><button type="button" class="btn btn-primary btn-sm">Home</button></a>
 </div>
