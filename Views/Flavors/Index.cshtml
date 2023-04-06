@@ -16,15 +16,15 @@
           <th>Name</th>
           <th>Actions</th>
         </tr>
-        @foreach (Treat treat in Model)
+        @foreach (Flavor flavor in Model)
         {
           <tr>
             <td>
-              @Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })
+              @Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId })
             </td>
             <td>
-              @Html.ActionLink("Edit", "Edit", new { id = treat.TreatId }, new {@class = "btn btn-warning"})
-              @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId }, new {@class = "btn btn-danger"})
+              @Html.ActionLink("Edit", "Edit", new { id = flavor.FlavorId }, new {@class = "btn btn-warning"})
+              @Html.ActionLink("Delete", "Delete", new { id = flavor.FlavorId }, new {@class = "btn btn-danger"})
             </td>
           </tr>
         }
