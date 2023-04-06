@@ -14,7 +14,10 @@
       <table>
         <tr>
           <th>Name</th>
-          <th>Actions</th>
+          @if (User.IsInRole("Admin"))
+          {
+            <th>Actions</th>
+          }
         </tr>
         @foreach (Flavor flavor in Model)
         {
@@ -22,17 +25,23 @@
             <td>
               @Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId })
             </td>
-            <td>
-              @Html.ActionLink("Edit", "Edit", new { id = flavor.FlavorId }, new {@class = "btn btn-warning"})
-              @Html.ActionLink("Delete", "Delete", new { id = flavor.FlavorId }, new {@class = "btn btn-danger"})
-            </td>
+            @if (User.IsInRole("Admin"))
+            {
+              <td>
+                @Html.ActionLink("Edit", "Edit", new { id = flavor.FlavorId }, new {@class = "btn btn-warning"})
+                @Html.ActionLink("Delete", "Delete", new { id = flavor.FlavorId }, new {@class = "btn btn-danger"})
+              </td>
+            }
           </tr>
         }
       </table>
     }
   </div>
   <br>
-  <a href="Flavors/Create"><button type="button" class="btn btn-primary btn-sm">Add New Flavor</button></a>
+  @if (User.IsInRole("Admin"))
+  {
+    <a href="Flavors/Create"><button type="button" class="btn btn-primary btn-sm">Add New Flavor</button></a>
+  }
   <a href="/"><button type="button" class="btn btn-primary btn-sm">Home</button></a>
 </div>
 

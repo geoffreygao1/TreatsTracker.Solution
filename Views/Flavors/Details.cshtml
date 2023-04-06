@@ -13,22 +13,28 @@ else
   <table>
   <tr>
     <th>Treats</th>
-    <th>Actions</th>
-  </tr>
-  @foreach (FlavorTreat join in Model.FlavorTreatJoinEntities)
+    @if (User.IsInRole("Admin"))
+      {
+        <th>Actions</th>
+      }
+    </tr>
+    @foreach (FlavorTreat join in Model.FlavorTreatJoinEntities)
     {
       <tr>
         <td>
-          @Html.ActionLink($"{join.Treat.Name}", "Details", new { id = join.Treat.TreatId })
+          @Html.ActionLink($"{join.Treat.Name}", "Details", "Treats", new { id = join.Treat.TreatId })
         </td>
-        <td>
-          @using (Html.BeginForm("DeleteJoin", "Flavors"))
-          {
-            @Html.Hidden("joinId", @join.FlavorTreatId)
-            @Html.Hidden("flavorId", Model.FlavorId)
-            <input type="submit" value="Delete" class="btn btn-danger" />
-          }
-        </td>
+        @if (User.IsInRole("Admin"))
+        {
+          <td>
+            @using (Html.BeginForm("DeleteJoin", "Flavors"))
+            {
+              @Html.Hidden("joinId", @join.FlavorTreatId)
+              @Html.Hidden("flavorId", Model.FlavorId)
+              <input type="submit" value="Delete" class="btn btn-danger" />
+            }
+          </td>
+        }
       </tr>
 
     }
@@ -36,8 +42,11 @@ else
 
 }
 <br>
-@Html.ActionLink("Add a treat", "AddTreat", new { id = Model.FlavorId }, new {@class = "btn btn-success"})
-@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId }, new {@class = "btn btn-warning"})
-@Html.ActionLink("Delete flavor", "Delete", new { id = Model.FlavorId }, new {@class = "btn btn-danger"})
+@if (User.IsInRole("Admin"))
+{
+  @Html.ActionLink("Add a treat", "AddTreat", new { id = Model.FlavorId }, new {@class = "btn btn-success"})
+  @Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId }, new {@class = "btn btn-warning"})
+  @Html.ActionLink("Delete flavor", "Delete", new { id = Model.FlavorId }, new {@class = "btn btn-danger"})
+}
 <a href="/Flavors"><button type="button" class="btn btn-primary">Back to List</button></a>
 
