@@ -1,0 +1,28 @@
+@using TreatsTracker.ViewModels
+
+@model LoginViewModel
+
+<h2>Log in with your account</h2>
+<hr />
+
+@if (!ViewData.ModelState.IsValid)
+{
+  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:")
+}
+
+@using (Html.BeginForm())
+{
+  @Html.Label("UserName","Username:")
+  @Html.TextBoxFor(m => m.UserName)
+  <br>
+  <br>
+  @Html.Label("Password","Password:")
+  @Html.EditorFor(m => m.Password)
+  <br>
+  <br>
+  <input type="submit" value="Log in" />
+}
+
+<br>
+<a href="/Accounts/Register"><button type="button" class="btn btn-primary btn-sm">Register for an account</button></a>
+<a href="/Accounts"><button type="button" class="btn btn-primary btn-sm">Back to Accounts page</button></a>
