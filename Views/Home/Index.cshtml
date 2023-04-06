@@ -1,7 +1,72 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using TreatsTracker.Models;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<h1>TreatsTracker</h1>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h4>Flavors <span><a href="/Flavors"><button type="button" class="btn btn-light btn-sm">Manage</button></a>
+        </span></h4>
+      @if (Model["flavors"].Length == 0)
+      {
+        <p>No flavors have been added yet!</p>
+      }
+      else
+      {
+        <table>
+        <tr>
+          <th>Flavor</th>
+          <th>Actions</th>
+        </tr>
+        @foreach (Flavor flavor in Model["flavors"])
+          {
+            {
+              <tr>
+                <td>
+                  @Html.ActionLink($"{flavor.Name}", "Details", new { id = flavor.FlavorId })
+                </td>
+                <td>
+                  @Html.ActionLink("Edit", "Edit", "Flavors",new { id = flavor.FlavorId }, new {@class = "btn btn-warning"})
+                  @Html.ActionLink("Delete", "Delete", "Flavors", new { id = flavor.FlavorId }, new {@class = "btn btn-danger"})
+                </td>
+              </tr>
+            }
+          }
+        </table>
+      }
+    </div>
+    <div class="col-sm">
+      <h4>Treats <span><a href="/Treats"><button type="button" class="btn btn-light btn-sm">Manage</button></a>
+        </span></h4>
+      @if (Model["treats"].Length == 0)
+      {
+        <p>No treats have been added yet!</p>
+      }
+      else 
+      {
+        <table>
+        <tr>
+          <th>Treat</th>
+          <th>Actions</th>
+        </tr>
+        @foreach (Treat treat in Model["treats"])
+        {
+          <tr>
+              <td>
+                @Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })
+              </td>
+              <td>
+                @Html.ActionLink("Edit", "Edit", "Treats", new { id = treat.TreatId }, new {@class = "btn btn-warning"})
+                @Html.ActionLink("Delete", "Delete", "Treats", new { id = treat.TreatId }, new {@class = "btn btn-danger"})
+              </td>
+            </tr>
+        }
+        </table>
+      }
+
+    </div>
+  </div>
 </div>
+
+
+
