@@ -15,6 +15,12 @@
 
 _This application contains a website that allows a user to track treats and flavor types at a store. The application contains functionality to add, view, and delete treats and flavors. The application allows users to assign treats to flavors and vice versa. The application also contains user authentication functionality as well as role based authentication. The project demonstrates solid understanding of the new concepts from the Authentication with Identity coursework including MVC, SQL, and Entity Framework Core._
 
+## Install Tools
+
+_Install the `dotnet -ef` tool by running thef ollowing command in your terminal_
+
+_`dotnet tool install --global dotnet-ef --version 6.0.0`_
+
 ## Setup/Installation Requirements
 
 * _Clone this repository_
