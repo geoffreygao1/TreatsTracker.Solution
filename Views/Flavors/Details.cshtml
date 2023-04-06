@@ -1,0 +1,43 @@
+@using TreatsTracker.Models
+@model TreatsTracker.Models.Treat
+
+
+<h3>@Html.DisplayFor(model => model.Name)</h3>
+@if (@Model.FlavorTreatJoinEntities.Count == 0)
+{
+  <p>This treat is not assigned to any flavors yet!</p>
+}
+else
+{
+  <h5>Assigned to:</h5>
+  <table>
+  <tr>
+    <th>Flavors</th>
+    <th>Actions</th>
+  </tr>
+  @foreach (FlavorTreat join in Model.FlavorTreatJoinEntities)
+    {
+      <tr>
+        <td>
+          @Html.ActionLink($"{join.Flavor.Name}", "Details", new { id = join.Flavor.FlavorId })
+        </td>
+        <td>
+          @using (Html.BeginForm("DeleteJoin", "Treats"))
+          {
+            @Html.Hidden("joinId", @join.FlavorTreatId)
+            @Html.Hidden("treatId", Model.TreatId)
+            <input type="submit" value="Delete" class="btn btn-danger" />
+          }
+        </td>
+      </tr>
+
+    }
+  </table>
+
+}
+<br>
+@Html.ActionLink("Add a flavor", "AddFlavor", new { id = Model.TreatId }, new {@class = "btn btn-success"})
+@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId }, new {@class = "btn btn-warning"})
+@Html.ActionLink("Delete treat", "Delete", new { id = Model.TreatId }, new {@class = "btn btn-danger"})
+<a href="/Treats"><button type="button" class="btn btn-primary">Back to List</button></a>
+
