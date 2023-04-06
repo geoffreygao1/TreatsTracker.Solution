@@ -16,7 +16,10 @@
         <table>
         <tr>
           <th>Flavor</th>
+           @if (User.IsInRole("Admin"))
+           {
           <th>Actions</th>
+           }
         </tr>
         @foreach (Flavor flavor in Model["flavors"])
           {
@@ -25,10 +28,12 @@
                 <td>
                   @Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new { id = flavor.FlavorId })
                 </td>
+                 @if (User.IsInRole("Admin")){
                 <td>
-                  @Html.ActionLink("Edit", "Edit", "Flavors",new { id = flavor.FlavorId }, new {@class = "btn btn-warning"})
-                  @Html.ActionLink("Delete", "Delete", "Flavors", new { id = flavor.FlavorId }, new {@class = "btn btn-danger"})
+                  @Html.ActionLink("Edit", "Edit", "Flavors",new { id = flavor.FlavorId }, new {@class = "btn btn-warning btn-sm"})
+                  @Html.ActionLink("Delete", "Delete", "Flavors", new { id = flavor.FlavorId }, new {@class = "btn btn-danger btn-sm"})
                 </td>
+                }
               </tr>
             }
           }
@@ -47,7 +52,9 @@
         <table>
         <tr>
           <th>Treat</th>
+           @if (User.IsInRole("Admin")){
           <th>Actions</th>
+           }
         </tr>
         @foreach (Treat treat in Model["treats"])
         {
@@ -55,10 +62,12 @@
               <td>
                 @Html.ActionLink($"{treat.Name}", "Details", "Treats",new { id = treat.TreatId })
               </td>
+               @if (User.IsInRole("Admin")){
               <td>
-                @Html.ActionLink("Edit", "Edit", "Treats", new { id = treat.TreatId }, new {@class = "btn btn-warning"})
-                @Html.ActionLink("Delete", "Delete", "Treats", new { id = treat.TreatId }, new {@class = "btn btn-danger"})
+                @Html.ActionLink("Edit", "Edit", "Treats", new { id = treat.TreatId }, new {@class = "btn btn-warning btn-sm"})
+                @Html.ActionLink("Delete", "Delete", "Treats", new { id = treat.TreatId }, new {@class = "btn btn-danger btn-sm"})
               </td>
+               }
             </tr>
         }
         </table>
