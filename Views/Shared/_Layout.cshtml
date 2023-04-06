@@ -30,9 +30,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/Flavors">Flavors</a>
                         </li>
-                        <li class="nav-item active">
-                            @if (User.Identity.IsAuthenticated)
-                            {
+                    </ul>
+                    <ul class="navbar-nav me-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link" href="/Account">My Account</a>
                             </li>
@@ -40,18 +41,18 @@
                                 <a class="nav-link" href="/Role">Roles</a>
                             </li>
                             <li class="nav-item">
-                                    @using (Html.BeginForm("LogOff", "Account"))
-                                    {
+                                @using (Html.BeginForm("LogOff", "Account"))
+                                {
                                     <input type="submit" class="btn btn-warning" value="Log out" />
-                                    }
+                                }
                             </li>
-                            }
-                            else
-                            {
+                        }
+                        else
+                        {
                             <li class="nav-item">
                                 <a class="btn btn-primary" href="/Account/Login">Log in</a>
                             </li>
-                            }
+                        }
                     </ul>
                 </div>
             </div>
