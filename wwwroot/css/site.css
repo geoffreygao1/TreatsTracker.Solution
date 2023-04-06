@@ -27,3 +27,7 @@ td {
   border: 1px solid darkgray;
   padding: 5px;
 }
+
+th {
+  background-color: lightgrey;
+}
