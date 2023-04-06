@@ -1,0 +1,39 @@
+@using TreatsTracker.Models;
+
+<h1>Treats</h1>
+<hr>
+
+<div class="container">
+  <div class="row">
+    @if (@Model.Count == 0)
+    {
+      <h3>No treats have been added yet!</h3>
+    }
+    else
+    {
+      <table>
+        <tr>
+          <th>Treat</th>
+          <th>Actions</th>
+        </tr>
+        @foreach (Treat treat in Model)
+        {
+          <tr>
+            <td>
+              @Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })
+            </td>
+            <td>
+              @Html.ActionLink("Edit", "Edit", new { id = treat.TreatId }, new {@class = "btn btn-warning"})
+              @Html.ActionLink("Delete", "Delete", new { id = treat.TreatId }, new {@class = "btn btn-danger"})
+            </td>
+          </tr>
+        }
+      </table>
+    }
+
+    <br>
+  </div>
+  <br>
+  <a href="Treats/Create"><button type="button" class="btn btn-primary btn-sm">Add New Treat</button></a>
+  <a href="/"><button type="button" class="btn btn-primary btn-sm">Home</button></a>
+</div>
