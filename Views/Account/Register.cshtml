@@ -12,19 +12,23 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-  @Html.LabelFor(user => user.Email)
+  @Html.Label("Email","Email:")
   @Html.TextBoxFor(user=> user.Email)
-
-  @Html.LabelFor(user=> user.UserName)
+  <br>
+  <br>
+  @Html.Label("UserName","Name:")
   @Html.EditorFor(user=> user.UserName)
-
-  @Html.LabelFor(user=> user.Password)
+  <br>
+  <br>
+  @Html.Label("Password","Password:")
   @Html.EditorFor(user=> user.Password)
-
-  @Html.LabelFor(user=> user.ConfirmPassword)
+  <br>
+  <br>
+  @Html.Label("Confirm Password","Confirm Password:")
   @Html.EditorFor(user=> user.ConfirmPassword)
-
-  <input type="submit" value="Register" />
+  <br>
+  <br>
+  <input type="submit" value="Register" class="btn btn-warning" />
 }
-
-<p>@Html.ActionLink("Back to accounts page", "Index")</p>
+<br>
+<a href="/Account"><button type="button" class="btn btn-primary btn-sm">Back to Accounts page</button></a>
