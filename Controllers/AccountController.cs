@@ -21,6 +21,7 @@ namespace TreatsTracker.Controllers
 
     public ActionResult Index()
     {
+
       return View();
     }
 
